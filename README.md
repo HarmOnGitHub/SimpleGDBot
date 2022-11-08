@@ -1,3 +1,3 @@
 # SimpleGDBot
 
-Simple bot that comments on GD Levels every **n** seconds.
+Command based bot for GD level comments.
