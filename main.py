@@ -79,6 +79,9 @@ def commands(level):
             print("Executed anime")
         except:
             return
+    elif(com.startswith("!source")):
+        uploadGJComment(un,pw,f"@{u} You can find my source code here: https://github.com/HarmOnGitHub/SimpleGDBot",perc,level)
+        print("Executed source")
     
 
 lvl=input("Level id: ")
