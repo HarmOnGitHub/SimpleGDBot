@@ -13,7 +13,7 @@ connection.HTTPConnection.request = request
 
 def comment_chk(*,username,comment,levelid,percentage,type):
 	part_1 = username + comment + levelid + str(percentage) + type + "xPT6iUrtws0J"
-	return base64.b64encode(xor(hashlib.sha1(part_1.encode()).hexdigest(),"29481").encode()).decode()
+	return base64.urlsafe_b64encode(xor(hashlib.sha1(part_1.encode()).hexdigest(),"29481").encode()).decode()
 def xor(data, key):
 	return ''.join(chr(ord(x) ^ ord(y)) for (x,y) in zip(data, cycle(key)))
 def gjp_encrypt(data):
@@ -37,7 +37,7 @@ def uploadGJComment(name,passw,comment,perc,level):
         try:
                 accountid = getGJUsers(name)[1]
                 gjp = gjp_encrypt(passw)
-                c = base64.b64encode(comment.encode()).decode()
+                c = base64.urlsafe_b64encode(comment.encode()).decode()
                 chk = comment_chk(username=name,comment=c,levelid=str(level),percentage=perc,type="0")
                 data={
                     "secret":"Wmfd2893gb7",
