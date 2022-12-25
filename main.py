@@ -4,6 +4,7 @@ import time,requests,random
 from json import loads
 from threading import Thread
 from owo import owoify
+from animeAPI import getAnimeChar
 
 un = ""
 pw = ""
@@ -54,6 +55,28 @@ def commands(level):
             ccc=f"@{u}, {c[1]} has {shtats['stars']} stars, {shtats['diamonds']} diamonds, {shtats['coins']} coins, {shtats['userCoins']} user coins, {shtats['demons']} demons and {shtats['cp']} CP."
             uploadGJComment(un,pw,f"{ccc}",perc,level)
             print("Executed shtats")
+        except:
+            return
+    elif(com.startswith("!anime")):
+        c=com.split("!anime ")
+        num=0
+        try:
+            cc=c[1]
+            num=int(cc)
+        except:
+            num=0
+        char=getAnimeChar(num)
+        try:
+            cn=char['Character']['name']['userPreferred']
+            ca=char['Character']['age']
+            cg=char['Character']['gender']
+            if(ca==None):
+                ca="Unknown"
+            if(cg==None):
+                cg="Unknown"
+            ccc=f"Name: {cn}, Age: {ca}, Gender: {cg}."
+            uploadGJComment(un,pw,f"@{u} {ccc}",perc,level)
+            print("Executed anime")
         except:
             return
     
