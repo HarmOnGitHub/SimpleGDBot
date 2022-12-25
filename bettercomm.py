@@ -33,12 +33,12 @@ def getGJUsers(target):
     accountid = request[10]
     return (username,accountid,uuid)
 
-def uploadGJComment(name,passw,comment,level):
+def uploadGJComment(name,passw,comment,perc,level):
         try:
                 accountid = getGJUsers(name)[1]
                 gjp = gjp_encrypt(passw)
                 c = base64.b64encode(comment.encode()).decode()
-                chk = comment_chk(username=name,comment=c,levelid=str(level),percentage="69",type="0")
+                chk = comment_chk(username=name,comment=c,levelid=str(level),percentage=perc,type="0")
                 data={
                     "secret":"Wmfd2893gb7",
                     "accountID":accountid,
@@ -46,10 +46,9 @@ def uploadGJComment(name,passw,comment,level):
                     "userName":name,
                     "comment":c,
                     "levelID":level,
-                    "percent":69,
+                    "percent":perc,
                     "chk":chk
                 }
                 return requests.post("http://www.boomlings.com/database/uploadGJComment21.php",data=data,headers={"User-Agent": ""}).text
         except:
                 return "problem"
-
